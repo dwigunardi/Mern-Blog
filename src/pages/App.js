@@ -1,13 +1,18 @@
-import logo from './logo.svg';
+import logo from '../assets/logo.svg';
 import './App.css';
+import { ExampleContext } from '../context/example';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 function App() {
+  const Data = useContext(ExampleContext)
   return (
+    
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js</code> and save to reload. 
         </p>
         <a
           className="App-link"
@@ -15,8 +20,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          {Data.name}
         </a>
+        <Link to={'/Home'}>Go to Home</Link>
       </header>
     </div>
   );
