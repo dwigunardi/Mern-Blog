@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Checkbox, Form, Input, message } from "antd";
+import { Checkbox, Col, Form, Input, message, Row } from "antd";
 import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
 import { ExampleContext } from "../../context/example";
+import { LoginBg } from "../../assets";
+
 function Login() {
   const Navigate = useNavigate();
   const [Message, setMessage] = useState("username atau password salah");
@@ -40,9 +42,14 @@ function Login() {
     message.info("username atau password tidak di temukan");
   };
 
+  console.log(AuthenticationUser.status)
+
   return (
-    <div class="min-h-screen bg-gray-200 py-6 flex flex-col justify-center sm:py-12">
-      <div class="relative py-3 w-[600px] sm:max-w-xl sm:mx-auto">
+    <div class="min-h-screen bg-gray-900 py-6 flex flex-col justify-center sm:py-12 overflow-clip">
+      <img src={LoginBg} className="absolute top-0 bottom-0 overflow-hidden w-screen h-screen opacity-70 blur-sm" />
+      <div class="relative py-3 sm:w-3/4 sm:mx-auto">
+      <Row justify={'center'}>
+          <Col xs={24} sm={20} md={16} xl={12}>
         <div class="absolute inset-0 bg-gradient-to-l    from-red-300 to-red-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-12 sm:rounded-3xl"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
 
@@ -89,7 +96,7 @@ function Login() {
                       },
                     ]}
                   >
-                    <Input.Password autoComplete="off" />
+                    <Input.Password autoComplete='new-password' type='password' />
                   </Form.Item>
 
                   <Form.Item name="remember" valuePropName="checked">
@@ -112,6 +119,11 @@ function Login() {
             </div>
           </div>
         </div>
+        </Col>
+          {/* <Col span={12}>
+            <div className="bg-blue-500 w-full h-full"></div>
+          </Col> */}
+        </Row>
       </div>
     </div>
   );

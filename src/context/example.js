@@ -10,6 +10,7 @@ export const ExampleProvider = ({children}) => {
     const [isAuthenticate, setAuthenticated] = useState(false)
     const Data = {
         setter : setAuthenticated,
+        status : isAuthenticate,
         AuthenticationUser : [
         {
           username: "admin",

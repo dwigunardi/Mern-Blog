@@ -1,17 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navbar, Button } from "flowbite-react";
-import { Drawer } from "antd";
-import { Link } from "react-router-dom";
+import { Drawer, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { ExampleContext } from "../../context/example";
 function Navigasi() {
   const [open, setOpen] = useState(false);
   const AuthenticationUser = useContext(ExampleContext)
+  const Navigate = useNavigate()
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    let sb = true
+    AuthenticationUser.status ? message.success('selamat datang') : Navigate('/Auth/Login')
+    return () => sb = false
+    
+  }, [AuthenticationUser.status])
+  
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href="https://flowbite.com/">
@@ -26,7 +34,7 @@ function Navigasi() {
       </Navbar.Brand>
       <div className="ml-64 md:order-2">
         <Link to={'../Auth/Login'}>
-        <Button className="rounded-full">Login / Register</Button>
+        <Button onClick={() => AuthenticationUser.setter(false)} className="rounded-full">Login / Register</Button>
         </Link>
         </div>
         <div className="block md:hidden ">
